@@ -18,7 +18,7 @@ genai.configure(api_key=API_KEY)
 embedding_model = "models/embedding-001"
 
 st.set_page_config(page_title="Gemini RAG Chatbot")
-st.title("🤖 Gemini RAG-based Chatbot")
+st.title(" Gemini RAG-based Chatbot")
 
 if "document_chunks" not in st.session_state:
     st.session_state.document_chunks = []
@@ -99,7 +99,7 @@ if uploaded_file:
         store_embeddings(chunks)
         st.session_state.document_chunks = chunks  
         st.session_state.document_uploaded = True 
-        st.success("✅ Document Uploaded successfully!")
+        st.success("Document Uploaded successfully!")
 
 if st.button("Remove Document"): 
     st.session_state.document_chunks = []
@@ -160,7 +160,7 @@ if user_question:
     db_data = get_db_data(user_question)
     
     if db_data:
-        response = "\n".join([f"🔹 **{row[0]}** - 💰 Price: ₹{row[1]}" for row in db_data])
+        response = "\n".join([f"🔹 **{row[0]}** -  Price: ₹{row[1]}" for row in db_data])
     
     elif st.session_state.document_uploaded: 
         relevant_chunks = retrieve_relevant_chunks(user_question, top_k=3)
@@ -170,8 +170,8 @@ if user_question:
         response = search_serpapi(user_question)
 
     st.session_state.chat_history.append(("You", user_question))
-    st.session_state.chat_history.append(("🤖 AI", response))
-    st.subheader("🤖 AI Response:")
+    st.session_state.chat_history.append((" AI", response))
+    st.subheader(" AI Response:")
     st.write(response)
 
 
